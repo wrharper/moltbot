@@ -30,7 +30,7 @@ moltbot onboard --install-daemon
 ## System requirements
 
 - **Node >=22**
-- macOS, Linux, or Windows via WSL2
+- macOS, Linux, or Windows
 - `pnpm` only if you build from source
 
 ## Choose your install path
