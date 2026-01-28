@@ -50,6 +50,12 @@ export function loadShellEnvFallback(opts: ShellEnvFallbackOptions): ShellEnvFal
     return { ok: true, applied: [], skippedReason: "disabled" };
   }
 
+  // Windows doesn't have a login shell environment to load
+  if (process.platform === "win32") {
+    lastAppliedKeys = [];
+    return { ok: true, applied: [], skippedReason: "disabled" };
+  }
+
   const hasAnyKey = opts.expectedKeys.some((key) => Boolean(opts.env[key]?.trim()));
   if (hasAnyKey) {
     lastAppliedKeys = [];
