@@ -88,6 +88,102 @@ Windows uses standard AppData locations:
 - **Sessions**: `%USERPROFILE%\.clawdbot\sessions\`
 - **Logs**: Check Task Scheduler logs or stdout redirection in task script
 
+## Shell Execution & Automation
+
+Moltbot uses **PowerShell** for command execution on Windows, providing full automation capabilities similar to macOS/Linux.
+
+### How It Works
+
+The agent's `bash` tool automatically uses PowerShell when running on Windows:
+- **Shell**: PowerShell (via `powershell.exe`)
+- **Arguments**: `-NoProfile -NonInteractive -Command`
+- **Process Control**: `taskkill /F /T /PID` for process tree termination
+
+Example agent command execution:
+```typescript
+// Cross-platform shell execution
+const { shell, args } = getShellConfig();
+// On Windows: { shell: "C:\\Windows\\System32\\powershell.exe", args: ["-NoProfile", "-NonInteractive", "-Command"] }
+// On Unix:    { shell: "/bin/sh", args: ["-c"] }
+```
+
+### Windows Commands Available
+
+The agent can run any Windows command, utility, or script:
+
+**System Information**:
+```powershell
+Get-ComputerInfo
+systeminfo
+ipconfig /all
+```
+
+**File Operations**:
+```powershell
+Get-ChildItem -Recurse
+Copy-Item -Path "source" -Destination "dest"
+Remove-Item -Path "file.txt" -Force
+```
+
+**Process Management**:
+```powershell
+Get-Process
+Stop-Process -Name "notepad"
+Start-Process "notepad.exe"
+```
+
+**Network Operations**:
+```powershell
+Test-Connection google.com
+Get-NetAdapter
+New-NetFirewallRule -DisplayName "Allow Port 8080" -Direction Inbound -LocalPort 8080 -Protocol TCP -Action Allow
+```
+
+**Automation Examples**:
+```powershell
+# Schedule tasks
+schtasks /Create /TN "MyTask" /TR "notepad.exe" /SC DAILY /ST 09:00
+
+# Registry operations
+Get-ItemProperty -Path "HKLM:\Software\Microsoft\Windows\CurrentVersion"
+
+# Service management
+Get-Service
+Start-Service -Name "wuauserv"
+```
+
+### Command Chains
+
+PowerShell supports command chaining with `;` or `&`:
+```powershell
+cd C:\Projects; npm install; npm test
+```
+
+Unlike bash's `&&`, PowerShell uses different operators:
+- `;` - Run commands sequentially (ignore failures)
+- `&&` - Run next command only if previous succeeded (PowerShell 7+)
+- `||` - Run next command only if previous failed (PowerShell 7+)
+
+### Troubleshooting Shell Execution
+
+**PowerShell Not Found**:
+- Moltbot looks for PowerShell at `%SystemRoot%\System32\WindowsPowerShell\v1.0\powershell.exe`
+- Falls back to `powershell.exe` in PATH
+
+**Execution Policy Issues**:
+```powershell
+# Check current policy
+Get-ExecutionPolicy
+
+# Allow scripts (run as Administrator)
+Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope CurrentUser
+```
+
+**Command Output Issues**:
+- Some Windows utilities write directly to console via WriteConsole API
+- PowerShell properly captures and redirects this output (unlike cmd.exe with piped stdio)
+- If output is missing, try running the command directly in PowerShell to verify
+
 ## Troubleshooting
 
 ### Permission Issues
