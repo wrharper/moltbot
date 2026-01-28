@@ -8,11 +8,47 @@ read_when:
 
 Moltbot runs natively on Windows using Node.js and the Windows Task Scheduler for daemon management. The CLI and Gateway work on Windows 10/11 with full feature parity to macOS and Linux.
 
-**Note**: For advanced users comfortable with Linux, WSL2 (Ubuntu recommended) is also supported as an alternative runtime environment.
+**Installation Options:**
+- **MSI Installer** (Recommended): Download from [GitHub Releases](https://github.com/moltbot/moltbot/releases)
+- **npm/pnpm**: `npm install -g moltbot@latest`
+- **WSL2** (Advanced): For users comfortable with Linux, WSL2 is also supported
 
 Native Windows companion apps are planned.
 
-## Install (Native Windows)
+## Install (MSI Installer - Recommended)
+
+### Download
+
+Download the latest MSI installer:
+- [Latest Release](https://github.com/moltbot/moltbot/releases/latest)
+- Direct link: `Moltbot-{version}.msi`
+
+### Install
+
+#### GUI Installation
+Double-click the MSI file and follow the installation wizard.
+
+#### Silent Installation
+```powershell
+# Silent install
+msiexec /i Moltbot-2026.1.27.msi /qn
+
+# With progress bar
+msiexec /i Moltbot-2026.1.27.msi /qb
+```
+
+#### Verify Installation
+```powershell
+moltbot --version
+```
+
+The MSI installer automatically:
+- Installs to `C:\Program Files\Moltbot`
+- Adds Moltbot to system PATH
+- Creates Start Menu shortcuts
+- Registers uninstaller
+
+## Install (npm/pnpm)
 
 ### Prerequisites
 - **Node.js ≥22** - Download from [nodejs.org](https://nodejs.org/)
