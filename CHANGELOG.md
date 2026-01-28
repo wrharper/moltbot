@@ -2,6 +2,35 @@
 
 Docs: https://docs.molt.bot
 
+## 2026.1.28
+Status: release.
+
+### Highlights
+- **Windows MSI Installer**: Professional Windows installation via MSI package with WiX Toolset
+- **Windows Native Support**: Full native Windows support promoted as first-class platform
+- **Automated Release Workflow**: GitHub Actions workflow for building and distributing Windows MSI
+
+### Changes
+- Windows: Add MSI installer build infrastructure with WiX Toolset configuration
+- Windows: Create PowerShell build script (`scripts/package-windows-msi.ps1`)
+- Windows: Add GitHub Actions workflow for automated MSI building and release
+- Windows: Update documentation to promote MSI as recommended installation method
+- Windows: Add comprehensive release guide (`docs/platforms/windows/release.md`)
+- Windows: Remove "WSL2 required" messaging across all documentation
+- Windows: Add shell execution and automation documentation with PowerShell examples
+
+### Fixes
+- Windows: Fix shell env fallback attempting to execute `/bin/sh` on Windows (ENOENT error)
+- Windows: Add platform check to gracefully skip shell environment loading on Windows
+- Windows: Update all WSL2 references to reflect native Windows support
+
+### Documentation
+- Updated `docs/platforms/windows.md` with native Windows installation instructions
+- Added `installer/windows/README.md` with build and customization guide
+- Added `docs/platforms/windows/release.md` for MSI release process
+- Updated installation guides to remove WSL2 requirements
+- Added Windows automation examples and troubleshooting guides
+
 ## 2026.1.27-beta.1
 Status: beta.
 
