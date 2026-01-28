@@ -49,7 +49,7 @@ npm install -g moltbot@latest
 moltbot onboard --install-daemon
 ```
 
-The wizard installs the Gateway daemon (launchd/systemd user service) so it stays running.
+The wizard installs the Gateway daemon (launchd/systemd/Task Scheduler) so it stays running.
 Legacy note: `clawdbot` remains available as a compatibility shim.
 
 ## Quick start (TL;DR)
