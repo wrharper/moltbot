@@ -8,7 +8,7 @@ read_when:
 # Onboarding Wizard (CLI)
 
 The onboarding wizard is the **recommended** way to set up Moltbot on macOS,
-Linux, or Windows (via WSL2; strongly recommended).
+Linux, or Windows.
 It configures a local Gateway or a remote Gateway connection, plus channels, skills,
 and workspace defaults in one guided flow.
 
@@ -129,7 +129,8 @@ Tip: `--json` does **not** imply non-interactive mode. Use `--non-interactive` (
 6) **Daemon install**
    - macOS: LaunchAgent
      - Requires a logged-in user session; for headless, use a custom LaunchDaemon (not shipped).
-   - Linux (and Windows via WSL2): systemd user unit
+   - Linux: systemd user unit
+   - Windows: Task Scheduler task
      - Wizard attempts to enable lingering via `loginctl enable-linger <user>` so the Gateway stays up after logout.
      - May prompt for sudo (writes `/var/lib/systemd/linger`); it tries without sudo first.
    - **Runtime selection:** Node (recommended; required for WhatsApp/Telegram). Bun is **not recommended**.
@@ -288,7 +289,7 @@ The wizard can install `signal-cli` from GitHub releases:
 Notes:
 - JVM builds require **Java 21**.
 - Native builds are used when available.
-- Windows uses WSL2; signal-cli install follows the Linux flow inside WSL.
+- Windows: signal-cli works on native Windows with Java 21+. WSL2 users follow the Linux flow.
 
 ## What the wizard writes
 

@@ -72,4 +72,29 @@ describe("shell env fallback", () => {
     expect(env.DISCORD_BOT_TOKEN).toBe("discord");
     expect(exec2).not.toHaveBeenCalled();
   });
+
+  it("skips shell env loading on Windows", () => {
+    const originalPlatform = process.platform;
+    Object.defineProperty(process, "platform", { value: "win32", writable: true, configurable: true });
+
+    try {
+      const env: NodeJS.ProcessEnv = {};
+      const exec = vi.fn(() => Buffer.from("OPENAI_API_KEY=from-shell\0"));
+
+      const res = loadShellEnvFallback({
+        enabled: true,
+        env,
+        expectedKeys: ["OPENAI_API_KEY"],
+        exec: exec as unknown as Parameters<typeof loadShellEnvFallback>[0]["exec"],
+      });
+
+      expect(res.ok).toBe(true);
+      expect(res.applied).toEqual([]);
+      expect(res.ok && res.skippedReason).toBe("disabled");
+      expect(exec).not.toHaveBeenCalled();
+      expect(env.OPENAI_API_KEY).toBeUndefined();
+    } finally {
+      Object.defineProperty(process, "platform", { value: originalPlatform, writable: true, configurable: true });
+    }
+  });
 });

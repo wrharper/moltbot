@@ -703,7 +703,7 @@ Pick region-pinned endpoints. OpenRouter exposes US-hosted options for MiniMax, 
 
 ### Do I have to buy a Mac Mini to install this
 
-No. Moltbot runs on macOS or Linux (Windows via WSL2). A Mac mini is optional - some people
+No. Moltbot runs on macOS, Linux, or Windows. A Mac mini is optional - some people
 buy one as an always‑on host, but a small VPS, home server, or Raspberry Pi‑class box works too.
 
 You only need a Mac **for macOS‑only tools**. For iMessage, you can keep the Gateway on Linux
@@ -1472,7 +1472,7 @@ use multiple agents or sub-agents.
 ### Is there a benefit to using a node on my personal laptop instead of SSH from a VPS
 
 Yes - nodes are the first‑class way to reach your laptop from a remote Gateway, and they
-unlock more than shell access. The Gateway runs on macOS/Linux (Windows via WSL2) and is
+unlock more than shell access. The Gateway runs on macOS, Linux, or Windows and is
 lightweight (a small VPS or Raspberry Pi-class box is fine; 4 GB RAM is plenty), so a common
 setup is an always‑on host plus your laptop as a node.
 

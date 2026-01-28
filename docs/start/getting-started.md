@@ -49,7 +49,7 @@ run on host, set an explicit per-agent override:
   See [Web tools](/tools/web).
 
 macOS: if you plan to build the apps, install Xcode / CLT. For the CLI + gateway only, Node is enough.
-Windows: use **WSL2** (Ubuntu recommended). WSL2 is strongly recommended; native Windows is untested, more problematic, and has poorer tool compatibility. Install WSL2 first, then run the Linux steps inside WSL. See [Windows (WSL2)](/platforms/windows).
+Windows: Native Windows is fully supported. Install Node.js ≥22, then run the PowerShell commands below. Advanced users may prefer WSL2 (Ubuntu recommended) for a Linux environment. See [Windows](/platforms/windows).
 
 ## 1) Install the CLI (recommended)
 
@@ -85,7 +85,7 @@ What you’ll choose:
 - **Local vs Remote** gateway
 - **Auth**: OpenAI Code (Codex) subscription (OAuth) or API keys. For Anthropic we recommend an API key; `claude setup-token` is also supported.
 - **Providers**: WhatsApp QR login, Telegram/Discord bot tokens, Mattermost plugin tokens, etc.
-- **Daemon**: background install (launchd/systemd; WSL2 uses systemd)
+- **Daemon**: background install (launchd on macOS, systemd on Linux, Task Scheduler on Windows)
   - **Runtime**: Node (recommended; required for WhatsApp/Telegram). Bun is **not recommended**.
 - **Gateway token**: the wizard generates one by default (even on loopback) and stores it in `gateway.auth.token`.
 

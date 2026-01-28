@@ -17,7 +17,7 @@ Availability: internal preview. The iOS app is not publicly distributed yet.
 
 ## Requirements
 
-- Gateway running on another device (macOS, Linux, or Windows via WSL2).
+- Gateway running on another device (macOS, Linux, or Windows).
 - Network path:
   - Same LAN via Bonjour, **or**
   - Tailnet via unicast DNS-SD (`moltbot.internal.`), **or**

@@ -202,7 +202,7 @@ Example:
   - [macOS app](/platforms/macos)
   - [iOS app](/platforms/ios)
   - [Android app](/platforms/android)
-  - [Windows (WSL2)](/platforms/windows)
+  - [Windows](/platforms/windows)
   - [Linux app](/platforms/linux)
 - Ops and safety:
   - [Sessions](/concepts/session)
