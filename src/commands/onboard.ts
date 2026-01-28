@@ -64,8 +64,8 @@ export async function onboardCommand(opts: OnboardOptions, runtime: RuntimeEnv =
     runtime.log(
       [
         "Windows detected.",
-        "WSL2 is strongly recommended; native Windows is untested and more problematic.",
-        "Guide: https://docs.molt.bot/windows",
+        "Native Windows support is available. Advanced users may prefer WSL2.",
+        "Guide: https://docs.molt.bot/platforms/windows",
       ].join("\n"),
     );
   }
